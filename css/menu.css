@@ -1,0 +1,48 @@
+.menu-col {
+	width: 400px;
+	padding: 20px;
+}
+.menu-col .logo {
+	text-align: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	width: 100%;
+	color: #712046;
+	margin-bottom: 40px;
+	font-style: italic;
+}
+.menu-col .logo h1 {
+	font-size: 2.4em;
+	font-family: 'Montserrat';
+	font-weight: 300;
+}
+.menu-col .logo i {
+	padding-right: 10px;
+}
+.menu li {
+	list-style: none;
+	width: 100%;
+	text-align: center;
+	border: 1px solid #0652DD;
+	font-size: 1.7em;
+	padding: 7px 0px;
+	margin-bottom: 30px;
+	color: #0652DD;
+	cursor: pointer;
+	font-weight: 300;
+}
+.menu li:hover {
+	background: #0652DD;
+	color: #fff;
+}
+.copy {
+	font-weight: 300;
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	width: 400px;
+	text-align: center;
+}
