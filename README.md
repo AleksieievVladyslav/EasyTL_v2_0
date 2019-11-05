@@ -6,6 +6,5 @@
 - Parakhina Daria (<https://github.com/parahinad>)
 - Kochina Kateryna (<https://github.com/Fortel-X>)
 - Fedorenko Daria (<https://github.com/dariaFedorenko>)
-
-### Product owner: Konstantin Onyshchenko
 ---
+> This part describes only the web version of the application
