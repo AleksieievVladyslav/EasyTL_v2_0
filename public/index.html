@@ -17,7 +17,7 @@
 </head>
 <body>
 	<main>
-		<div class="load active">
+		<!-- <div class="load active">
 			<div class="logo">
 				<h1 class="light">Make it easier</h1><h1 class="light">with</h1>
 				<h1><i class="fas fa-american-sign-language-interpreting"></i>Easy TL</h1>
@@ -25,7 +25,7 @@
 			<div id="fountainG">
 				<div id="fountainG_1" class="fountainG"></div><div id="fountainG_2" class="fountainG"></div><div id="fountainG_3" class="fountainG"></div><div id="fountainG_4" class="fountainG"></div><div id="fountainG_5" class="fountainG"></div><div id="fountainG_6" class="fountainG"></div><div id="fountainG_7" class="fountainG"></div><div id="fountainG_8" class="fountainG"></div>
 			</div>
-		</div>
+		</div> -->
 		<div class="menu-col">
 			<div class="logo">
 				<i class="fas fa-american-sign-language-interpreting"></i>Easy TL<div class="toggle"><svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></path></svg></div>
@@ -51,7 +51,7 @@
 				<div class="profile">
 					<div class="profile-panel">
 						<div class = "profile state load-reg">
-							<div class="profile-state unlogged active">
+							<div class="profile-state unlogged">
 								<div class="guest-header">Гостевой аккаунт</div>
 								<div class="arrow-text"><span>Чтобы сохранить прогресс и просмотреть статистику<br/> авторизируйтесь или зарегистрируйтесь!</span></div>
 							</div>
@@ -83,27 +83,22 @@
 								</div>
 								<div class="share-result">Поделиться результатом</div>
 							</div>
-							<div class="profile-state login">
+							<div class="profile-state login active">
 								<div class="link_back back-to-guest"><a><i class="fas fa-arrow-left"></i>Назад</a></div>
 								<div class="form">
 									<div class="form-h">
 										<h2>Вход</h2>
-										<h3>Войдите через E-mail</h3>
 									</div>
-									<form action="">
-										<label>Е-mail</label>
-										<div class="input">
-											<i class="fas fa-at"></i>
-											<input type="email" name="mail" id="email-login" placeholder="Е-mail">
+									<div class="row">
+										<div class="col">
+											<label>Е-MAIL</label>
+											<input type="email" name="mail" id="email-login">
+											<label>ПАРОЛЬ</label>
+											<input type="password" name="pass" id="pass-login">
+											<div class="submit">Войти</div>
 										</div>
-										<label>Введите пароль</label>
-										<div class="input">
-											<i class="fas fa-lock"></i>
-											<input type="password" name="pass" id="pass-login" placeholder="Пароль">
-										</div>
-										<div class="submit">Войти</div>
-										<div class="social_media">
-											<p>или</p>
+										<div class="col loginor"><span>или</span></div>
+										<div class="col social_media">
 											<div class="sub sub_with_google">
 												<i class="fab fa-google-plus-g"></i>
 												<a href="">Войти через Google+</a>
@@ -113,7 +108,7 @@
 												<a href="">Войти через FaceBook</a>
 											</div>
 										</div>
-									</form>
+									</div>
 								</div>
 							</div>
 							<div class="profile-state registration">

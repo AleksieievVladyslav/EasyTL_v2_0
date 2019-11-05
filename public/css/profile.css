@@ -65,6 +65,7 @@
 	margin: auto;
 	text-align: center;
 	padding-top: 1px;
+	background: #ffffff;
 }
 .profile .input, .column .input {
 	position: relative;
@@ -88,22 +89,21 @@
 	border: 1px solid #0652DD;
 }
 .profile .submit {
-	display: inline-block;
+	display: block;
 	text-align: center;
-	font-size: 20px;
-	font-weight: 400;
-	border: 1px solid #0652DD;
-	color: #0652DD;
+	font-size: 15px;
+	font-weight: 600;
+	margin-top: 12px;
+	margin-bottom: 15px;
+	border: 2px solid #b2b2b2;
+	color: #b2b2b2;
 	cursor: pointer;
-	margin-top: 20px;
-	padding: 7px 50px;
+	transition: all 0.1s;
+	padding: 10px;
+	border-radius: 100px;
 }
 .profile .submit:hover {
-	background: #0652DD;
-	color: #fff;
-}
-.profile .social_media {
-	padding-top: 20px;
+	background: #f8f8f8;
 }
 .profile .sub {
 	width: 300px;
@@ -130,11 +130,52 @@
 }
 .profile label {
 	text-align: left;
+	font-weight: 600;
+	color: #b2b2b2;
 	font-size: 15px;
-	font-weight: 200;
 	display: block;
-	padding-bottom: 2px;
-	padding-top: 10px;
+	user-select: none;
+}
+.loginor {
+	width: 100px;
+	position: relative;
+	user-select: none;
+}
+.loginor::after {
+	display: block;
+	content: '';
+	position: absolute;
+	left: 50%;
+	top: 0;
+	transform: translateX(-50%);
+	width: 2px;
+	background: #b2b2b2;
+	bottom: 0;
+	z-index: -1;
+}
+.loginor span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: block;
+	border: 2px solid #b2b2b2;
+	color: #b2b2b2;
+	padding: 5px 10px;
+	border-radius: 100px;
+	background: #ffffff;
+}
+.form input{
+	width: 100%;
+	font-size: 15px;
+	padding: 9px 10px;
+	margin-bottom: 10px;
+	border: 2px solid #b2b2b2;
+	outline: none!important;
+	border-radius: 100px;
+}
+.form input:focus {
+	border-color: #828282;
 }
 .profile .form {
 	position: absolute;
