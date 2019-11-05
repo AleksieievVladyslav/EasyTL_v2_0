@@ -1,0 +1,24 @@
+{
+  "name": "easytl",
+  "version": "2.0.0",
+  "description": "NURE project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server -c bs-config.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/best-team-nure/EasyTL_v2_0.git"
+  },
+  "keywords": [
+    "NURE",
+    "trafic laws"
+  ],
+  "author": "Best team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/best-team-nure/EasyTL_v2_0/issues"
+  },
+  "homepage": "https://github.com/best-team-nure/EasyTL_v2_0#readme"
+}
