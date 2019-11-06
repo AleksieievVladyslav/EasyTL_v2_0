@@ -65,6 +65,7 @@
 	font-size: 35px;
 }
 .theory-topic {
+	background: #fff;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
@@ -83,11 +84,10 @@
 	font-weight: bold;
 	font-style: italic;
 	padding: 10px 10px;
-	width: 75%;
-	margin: auto;
+	text-align: center;
+	color: #555;
 }
 .topic-paragraph {
-	font-size: 1.3em;
 	width: 100%;
 	font-weight: 200;
 	padding: 10px 0px;
@@ -109,34 +109,30 @@
 	padding: 10px 15%;
 }
 .topic-hr {
-	height: 1px;
+	height: 2px;
 	margin: 10px 0px;
-	background: #0652DD;
+	background: #b2b2b2;
 }
 .topic-listitem {
 	position: relative;
-	width: 75%;
+	width: 100%;
 	margin: auto;
-	padding: 5px 10px 5px 30px;
-	font-size: 0.9em;
-	color: #0632aD;
+	padding: 0 5px 10px 20px;
+	font-size: 16px;
+	color: #888888;
 	text-align: justify;
-	font-style: italic;
 	list-style: none;
 	font-weight: 400;
 }
 .topic-listitem::before {
-	background: #0652DD;
 	display: block;
 	content: '';
 	position: absolute;
-	left: 15px;
-	width: 5px;
-	height: 5px;
-	border-radius: 50%;
-	top: 13px;
-	-webkit-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
+	left: 5px;
+	border: 5px solid transparent; 
+	border-left: 10px solid #b2b2b2;
+	width: 0px;
+	height: 0px;
+	box-sizing: content-box;
+	top: 5px;
 }

@@ -36,7 +36,7 @@ class Menu {
 		$(this.profileMenu[address]).addClass("active");
 	}
 	TheoryRedirect(target) {
-		if ($(target).hasClass('closed-topic')) {
+		if ($(target).children('.topic-wrapper').hasClass('closed-topic')) {
 			return;
 		}
 		let index = $(target).index();
