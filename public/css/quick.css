@@ -10,6 +10,9 @@
 .clock-sect:nth-child(3) {
 	text-align: left;
 }
+.quick {
+	background: #fff;
+}
 .quick .logo {
 	-webkit-user-select: none;
 	-moz-user-select: none;

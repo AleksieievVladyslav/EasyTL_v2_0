@@ -26,6 +26,9 @@ a {
 .col-l {
 	text-align: left;
 }
+main.ingame .state {
+	left: 0!important;
+}
 .dynamic-panel, .dynamic-panel > .state {
 	display: none;
 	position: fixed;

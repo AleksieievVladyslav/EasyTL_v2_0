@@ -137,3 +137,8 @@
 .menu-col.small .copy {
     opacity: 0;
 }
+
+
+main.ingame .menu-col {
+    display: none;
+}

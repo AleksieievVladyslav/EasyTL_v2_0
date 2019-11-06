@@ -24,6 +24,7 @@ class Quick {
 		$('.q-progress-bar').css({'width' : '0%'});
 		$('.quick').removeClass('active');
 		$('.main-menu').addClass('active');
+		$('main').removeClass('ingame');
 	}
 	GetStar() {
 		if (this.score == this.qList.length) return 2;
@@ -222,6 +223,7 @@ class Quick {
 		}
 	}
 	constructor(type, theme) {
+		$('main').addClass('ingame');
 		if (type === true) {
 			this.type = true;
 			this.currentQ = 0;
