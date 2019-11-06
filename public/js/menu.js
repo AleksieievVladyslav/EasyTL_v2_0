@@ -19,6 +19,13 @@ class Menu {
 			case "#quick":
 				let quick = new Quick();
 				break;
+			case "#home":
+				$('.profile-state').removeClass('active');
+				if (USER)
+					$('.profile-state.logged').addClass('active');
+				else 
+					$('.profile-state.unlogged').addClass('active');
+				break;
 		}
 		$(this.mainMenu[address]).addClass("active");
 	}

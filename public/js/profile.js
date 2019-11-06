@@ -66,7 +66,7 @@ class Profile {
 
 		let starsContainer = $('.profile .stars');
 		starsContainer.empty();
-		for (let j = 0; j < this.stars.length; j++) {
+		for (let j = 0; j < 5; j++) {
 			switch (stars[j]) {
 				case 0:
 					starsContainer.append('<i class="far fa-star">');

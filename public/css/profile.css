@@ -12,81 +12,11 @@
 .profile-state.active {
 	display: block;
 }
-.share-button{
-	text-align: center;
-	font-size: 20px;
-	font-weight: 400;
-	border: 1px solid #0652DD;
-	color: #0652DD;
-	cursor: pointer;
-	position:absolute;
-	width: 320px;
-	height: 40px;
-	padding-top: 5px;
-	bottom:60px;
-	left: 300px;
-}
-.share-button:hover{
-	background: #0652DD;
-	color: #fff;
-}
-.reg-log{
-	float:left;
-	text-align: center;
-	border-bottom: 1px solid #0652DD;
-	font-size: 24px;
-	color: #000;
-	font-weight: 400;
-	position: absolute;
-    right: 100px;
-	top: 110px;
-}
-.rl{
-	border-bottom: 1px solid #0652DD;
-	margin-left: 40px;
-}
-.rl2{
-	border-left: 1px solid #0652DD;
-	margin-left: 30px;
-	margin-right: 40px;
-	margin-bottom: 12px;
-}
-.wrap{
-	position:absolute;
-	top: 260px;
-	left: 200px;
-	width: 700px;
-	height: 200px;
-	border-bottom: 1px solid #0652DD;
-	border-top: 1px solid #0652DD;
-	padding-top: 60px;
-}
-.registration, .login{
+.registration, .login {
 	margin: auto;
 	text-align: center;
 	padding-top: 1px;
 	background: #ffffff;
-}
-.profile .input, .column .input {
-	position: relative;
-}
-.profile .input > i, .column .input > i {
-	color: #0652DD;
-	font-size:22px;
-	left: 10px;
-	top: 50%;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	-o-transform: translateY(-50%);
-	transform: translateY(-50%);
-	position: absolute;
-	cursor: pointer;
-}
-.profile .input > input, .column .input > input {
-	width: 100%;
-	padding: 10px 3px 10px 40px;
-	font-size: 16px;
-	border: 1px solid #0652DD;
 }
 .profile .submit {
 	display: block;
@@ -105,16 +35,23 @@
 .profile .submit:hover {
 	background: #f8f8f8;
 }
+.social_media {
+	vertical-align: middle;
+}
 .profile .sub {
-	width: 300px;
-	margin-top: 5px;
+	width: 100%;
 	display: inline-block;
 	font-size: 18px;
 	padding: 10px;
+	border-radius: 100px;
+	position: relative;
+	text-align-last: left;
+	padding-left: 75px;
 }
 .sub_with_google {
 	color:#EA4335;
-	border: 1px solid #EA4335;
+	border: 2px solid #EA4335;
+	margin-bottom: 25px;
 }
 .sub_with_google:hover{
 	color:#fff;
@@ -122,11 +59,17 @@
 }
 .sub_with_facebook {
 	color:#0652DD;
-	border: 1px solid #0652DD;
+	border: 2px solid #0652DD;
 }
 .sub_with_facebook:hover{
 	color:#fff;
 	background-color: #0652DD;
+}
+.profile .sub i {
+	position: absolute;
+	top: 50%;
+	left: 30px;
+	transform: translateY(-50%);
 }
 .profile label {
 	text-align: left;
@@ -190,35 +133,18 @@
 }
 .profile .form-h {
 	padding-bottom: 20px;
+	text-align: left;
 }
 .profile h2{
-	font-size: 30px;
+	font-size: 3em;
 	font-weight: 300;
-}
-.profile h3{
-	font-size: 20px;
-	font-weight: 200;
-}
-.or{
-	text-align:center;
-	font-size: 15px;
-	float: left;
-	margin: 50px auto 0 auto;
-	position:absolute;
-	bottom: 180px;
-	left:485px;
-}
-.up{
-	position:absolute;
-	top: 630px;
-	left: 1px;
 }
 .link_back a, .link_forw a{
 	cursor: pointer;
 	color: #66757F;
 	font-size: 20px;
 }
-.link_back i{
+.link_back i {
 	padding-right: 5px;
 }
 .link_forw i {
@@ -237,20 +163,27 @@
 .link_back a:hover, .link_forw a:hover {
 	color: #33424C;
 }
+.link_back._logout {
+	display: flex;
+	align-items: center;
+	top: 0px;
+	height: 53px;
+}
 .logged {
 	max-height: 100vh;
 	overflow-y: scroll;
+	background: #fff;
 }
 .profile-header {
-	font-size: 40px;
+	font-size: 38px;
 	font-style: italic;
 	font-weight: 100;
 	text-align: right;
 	padding: 5px 20px;
 }
-
 div.profile-line{
-	size: 20;
+	height: 1px;
+	background: #b2b2b2;
 }
 .user-head {
 	padding-top: 20px;

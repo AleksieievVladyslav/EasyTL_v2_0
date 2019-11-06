@@ -60,3 +60,6 @@ a {
 body > .cbalink {
 	display: none!important;
 }
+.mobile {
+	display: none;
+}
