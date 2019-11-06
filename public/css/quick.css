@@ -12,6 +12,11 @@
 }
 .quick {
 	background: #fff;
+	justify-content: center;
+	align-items: center;
+}
+.quick.active {
+	display: flex!important;
 }
 .quick .logo {
 	-webkit-user-select: none;

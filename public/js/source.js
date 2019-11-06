@@ -861,8 +861,8 @@ const THEORY = [
 ]
 var userStatistic = {
 	name: "User101",
-	stars: [2, 1, 0, 0, 0, 0,],
-	passedTopics: 2,
+	stars: [0, 0, 0, 0, 0, 0,],
+	passedTopics: 0,
 	questions: {
 		correct: 0,
 		total: 0
