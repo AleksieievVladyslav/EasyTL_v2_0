@@ -19,91 +19,50 @@
 	max-height: 80vh;
 	overflow-y: scroll;
 }
-.topic {
-	cursor: pointer;
-	transition: all 0.3s linear;
+.topic-wrapper {
+	transition: all 0.1s linear;
 	border-bottom: 1px solid #aaa;
-	margin-bottom: 20px;
 	position: relative;
+	font-weight: normal;
+	font-size: 22px;
 	width: 100%;
-	padding: 10px 60px 10px 40px;
+	padding-left: 70px;
+	display: flex;
+	align-items: center;
+	height: 50px;
 }
-.topic .desc {
-    display: none;
-    position: absolute;
-    right: 5px;
-    top: 100%;
-    margin-top: 5px;
-    width: 400px;
-    background: #ffffff;
-    color: #999999;
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    padding: 10px 20px;
-    text-align: justify;
-    font-size: 0.7em;
-	animation: fade 0.3s ease-in 1;
-	z-index: 1;
+.topic {
+	padding: 10px;
+	cursor: pointer;
 }
-.topic .info {
-    position: absolute;
-    right: 30px;
-    margin-right: -12px;
-    top: 50%;
-    margin-top: -12px;
-    height: 24px;
-    width: 24px;
-    border: 1px solid #999999;
-    color: #999999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-	cursor: help;
-	transition: all 0.3s;
-}
-.closed-topic:hover .info {
-	color: #ffffff;
-	border-color: #ffffff;
-} 
-.topic .info svg {
-    height: 15px;
-}
-.topic .info:hover + * {
-    display: block;
-}
-@keyframes fade {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.topic:hover {
+	background: #efefef;
 }
 .passed-topic {
-	background-color: #CFF0C2;
+	color: #4dbd28;
 }
-.passed-topic:hover {
-	background-color: #A0E285;
+.topic:hover .passed-topic {
+	color: #3c931f;
 }
 .opened-topic {
-	background-color: #FFF2BC;
+	color: #4dbd28;
 }
-.opened-topic:hover {
-	background-color: #FFE679;
+.topic:hover .opened-topic {
+	color: #3c931f;
 }
 .closed-topic {
-	background-color: #D3D3D3;
+	color: #D3D3D3;
 }
 .closed-topic:hover {
-	color: #ffffff;
-	background-color: #989898;
+	color: #989898;
 }
 .topic-star {
 	position: absolute;
 	left: 10px;
 	top: 50%;
 	color: #dcb042;
-	transform: translateY(-50%);
+	transform: translateY(-50%) rotate(15deg);
+	font-size: 35px;
 }
 .theory-topic {
 	overflow-y: scroll;

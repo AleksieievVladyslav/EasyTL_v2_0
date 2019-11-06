@@ -15,15 +15,15 @@ class Profile {
 	SetProgressTopics() {
 		let i;
 		for (i = 0; i < this.passedTopics; i++) {
-			$('.topic:eq(' + i + ')').removeClass('closed-topic').removeClass('opened-topic').addClass('passed-topic');
+			$('.topic:eq(' + i + ') .topic-wrapper').removeClass('closed-topic').removeClass('opened-topic').addClass('passed-topic');
 		}
 		for (let j = this.passedTopics; j < THEORY.length; j++) {
-			$('.topic:eq(' + j + ')').removeClass('opened-topic').removeClass('passed-topic').addClass('closed-topic');
+			$('.topic:eq(' + j + ') .topic-wrapper').removeClass('opened-topic').removeClass('passed-topic').addClass('closed-topic');
 		}
-		$('.topic:eq(' + i + ')').removeClass('closed-topic').removeClass('passed-topic').addClass('opened-topic');
+		$('.topic:eq(' + i + ') .topic-wrapper').removeClass('closed-topic').removeClass('passed-topic').addClass('opened-topic');
 
 		for(let j = 0; j < this.stars.length; j++) {
-			let star = $('.topic:eq(' + j + ')').children('.topic-star');
+			let star = $('.topic:eq(' + j + ') .topic-wrapper').children('.topic-star');
 			console.log(star);
 
 			switch(this.stars[j]) {

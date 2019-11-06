@@ -23,11 +23,15 @@ $(document).ready(function(){
 	});	
 
 	$('.reg-click').click(function(){
+		$('.state').removeClass('active');
+		$('.main-menu').addClass('active');
 		$('.profile-state').removeClass('active');
 		$('.registration').addClass('active');
 	});
 
 	$('.enter-click').click(function(){
+		$('.state').removeClass('active');
+		$('.main-menu').addClass('active');
 		$('.profile-state').removeClass('active');
 		$('.login').addClass('active');
 	});
