@@ -6,11 +6,13 @@ $(document).ready(function() {
 			// User is signed in.
 			USER = true;
 			var uid = user.uid;
+			$('.userprofile').removeClass('unlogged');
 			_getUserStat(uid, NAME);
 			$('#logout').off().click(function() {
 				firebase.auth().signOut().then(function() {
-				  $('.profile-state').removeClass('active');
-				  $('.unlogged').addClass('active');
+				  	$('.profile-state').removeClass('active');
+					$('.unlogged').addClass('active');
+					$('.userprofile').addClass('unlogged');
 				}).catch(function(error) {
 					alert('Error: \n' + error.message);
 				});

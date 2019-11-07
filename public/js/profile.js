@@ -24,7 +24,6 @@ class Profile {
 
 		for(let j = 0; j < this.stars.length; j++) {
 			let star = $('.topic:eq(' + j + ') .topic-wrapper').children('.topic-star');
-			console.log(star);
 
 			switch(this.stars[j]) {
 				case 0:
