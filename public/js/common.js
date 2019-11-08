@@ -92,4 +92,5 @@ $(document).ready(function(){
 		$('.theory').addClass('active');
 	})
 	new Profile(userStatistic);
+	let game = new Game(gameProps[0]);
 });

@@ -1,0 +1,15 @@
+.game {
+    background: #ffffff;
+    justify-content: center;
+    align-items: center;
+}
+.game.active {
+    display: flex!important;
+}
+#field {
+    border: 2px solid #b2b2b2;
+    background: #f8f8f8;
+    width: 700px;
+    height: 700px;
+    position: relative;
+}

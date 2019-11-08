@@ -5,6 +5,7 @@ class Menu {
 		"#quick" : ".quick",
 		"#help" : ".help",
 		"#home" : ".main-menu",
+		"#game" : ".game"
 	}
 	profileMenu = {
 		"#login" : ".login",
@@ -26,6 +27,8 @@ class Menu {
 				else 
 					$('.profile-state.unlogged').addClass('active');
 				break;
+			case "#game":
+				let game = new Game(gameProps[0]);
 		}
 		$(this.mainMenu[address]).addClass("active");
 	}
