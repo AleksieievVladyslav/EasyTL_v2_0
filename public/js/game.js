@@ -2,32 +2,81 @@ class Game {
     constructor(props) {
         $('.game').append('\
             <div id="field">\
+                <div id="map"></div>\
                 <div id="car"></div>\
             </div>'
         );
+        
+        $('#map').css({
+            backgroundImage: `url(img/game/${props.image}`,
+            height: `${props.height}px`,
+            width: `${props.width}px`,
+        });
+        
         this.posX = props.posX;
         this.posY = props.posY;
-        $('#field').css({
-            backgroundImage: `url(img/game/${props.image}`,
-            backgroundSize: `${props.backgroundSize}`,
-        });
-        this.render();
-        this.isMove = false;
-        this.renderInterval = setInterval(() => {
-            if(this.isMove) {
-                this.posX += -1
-            }
-            this.render();
-        }, 4);
+
+        this.speed = 0;
+        this.angle = - 0;
         this.player = new Car(props.player);
-        $(document).click(() => {
-            this.isMove = !this.isMove;
+
+        this.engine = setInterval(() => {
+            this.move();
+            this.render();
+            this.player.angle = this.angle;
+            this.player.render();
+        }, 0);
+
+        $(document).keydown((e) => {
+            switch(e.keyCode) {
+                case 37:
+                    this.as = 0.005;
+                    break;
+                // up
+                case 38:
+                    this.a = 0.01;
+                    break;
+                // right
+                case 39:
+                    this.as = -0.005;
+                    break;
+                // down
+                case 40:
+                    this.a = -0.02;
+                    break;
+            }
+        }).keyup((e) => {
+            switch(e.keyCode) {
+                case 37:
+                    this.as = 0;
+                    break;
+                case 38:
+                    this.a = 0;
+                    break;
+                case 39:
+                    this.as = 0;
+                    break;
+                case 40:
+                    this.a = 0;
+                    break;
+            }
         })
     }
+    move() {
+        if (this.a)
+            this.speed += this.a;
+        if (this.as)
+            this.angle += this.as;
+        let dx = this.speed * Math.cos(- this.angle);
+        let dy = this.speed * Math.sin(- this.angle);
+
+        this.posX -= dx;
+        this.posY -= dy;
+    }
     render() {
-        $('#field').css({
-            backgroundPositionX: `${this.posX}px`,
-            backgroundPositionY: `${this.posY}px`,
+        $('#map').css({
+            left: `${this.posX}px`,
+            top: `${this.posY}px`,
         })
     }
 }
@@ -84,6 +133,7 @@ class Car {
         this.element.style.backgroundSize = 'contain';
         this.element.style.backgroundRepeat = 'no-repeat';
         this.element.style.backgroundPosition = '50% 50%';
+        this.element.style.transform = `rotate(${- this.angle * 180 / Math.PI}deg)`
     }
 }
 
