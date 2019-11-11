@@ -17,6 +17,8 @@ class Game {
         this.posY = props.posY;
 
         this.speed = 0;
+        this.maxSpeed = 1;
+        this.minSpeed = 0.3;
         this.angle = - 0;
         this.player = new Car(props.player);
 
@@ -42,7 +44,11 @@ class Game {
                     break;
                 // down
                 case 40:
-                    this.a = -0.02;
+                    this.a = -0.005;
+                    break;
+                // space
+                case 32:
+                    this.isStop = true;
                     break;
             }
         }).keyup((e) => {
@@ -59,14 +65,56 @@ class Game {
                 case 40:
                     this.a = 0;
                     break;
+                case 32:
+                    this.isStop = false;
+                    break;
             }
         })
     }
     move() {
-        if (this.a)
-            this.speed += this.a;
-        if (this.as)
-            this.angle += this.as;
+        if (this.isStop) {
+            const stop = 0.04;
+            if (this.speed > stop) {
+                this.speed -= stop;
+            }
+            else if (this.speed < - stop) {
+                this.speed += stop;
+            } else {
+                this.speed = 0;
+            }
+        } else {
+            if (this.a)
+                this.speed += this.a;
+            if (this.speed > this.maxSpeed) {
+                this.speed = this.maxSpeed;
+            }
+            if (this.speed < this.maxSpeed / 2 * -1) {
+                this.speed = this.maxSpeed / 2 * -1;
+            }
+
+            if (this.speed > this.minSpeed || this.speed < -this.minSpeed) {
+                if (this.as) {
+                    if (this.speed > 0)
+                        this.angle += this.as;
+                    if (this.speed < 0)
+                        this.angle -= this.as;
+                }
+            }
+            else {
+                if (this.as) {
+                    const as = this.as * Math.abs(this.speed * 1.5);
+                    if (this.speed > 0) {
+                        this.angle += as;
+                    }
+                    else {
+                        this.angle -= as;
+                    }
+                }
+                
+            }
+            
+        }
+
         let dx = this.speed * Math.cos(- this.angle);
         let dy = this.speed * Math.sin(- this.angle);
 

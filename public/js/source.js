@@ -879,10 +879,10 @@ var userStatistic = {
 const gameProps = [
 	{
 		image: 'map1.jpg',
-		width: 3000,
-		height: 1700,
-		posX: 172,
-		posY: -130,
-		player: {width: '200px', height: '120px', image: 'car-3.png', element: 'car'}
+		width: 1500,
+		height: 850,
+		posX: 250,
+		posY: 110,
+		player: {width: '100px', height: '60px', image: 'car-3.png', element: 'car'}
 	}
 ]
