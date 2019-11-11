@@ -28,7 +28,9 @@ class Menu {
 					$('.profile-state.unlogged').addClass('active');
 				break;
 			case "#game":
+				$('main').addClass('ingame');
 				let game = new Game(gameProps[0]);
+				break;
 		}
 		$(this.mainMenu[address]).addClass("active");
 	}

@@ -20,6 +20,7 @@ class Game {
         this.maxSpeed = 1;
         this.minSpeed = 0.3;
         this.angle = - 0;
+        this.isRotateLeft = this.isRotateRight = false;
         this.player = new Car(props.player);
 
         this.engine = setInterval(() => {
@@ -32,7 +33,10 @@ class Game {
         $(document).keydown((e) => {
             switch(e.keyCode) {
                 case 37:
-                    this.as = 0.005;
+                    if (!this.isRotateRight) {
+                        this.as = 0.005;
+                        this.isRotateLeft = true;
+                    }
                     break;
                 // up
                 case 38:
@@ -40,7 +44,10 @@ class Game {
                     break;
                 // right
                 case 39:
-                    this.as = -0.005;
+                    if (!this.isRotateLeft) {
+                        this.as = -0.005;
+                        this.isRotateRight = true;
+                    }
                     break;
                 // down
                 case 40:
@@ -54,13 +61,19 @@ class Game {
         }).keyup((e) => {
             switch(e.keyCode) {
                 case 37:
-                    this.as = 0;
+                    if (this.isRotateLeft) {
+                        this.isRotateLeft = false;
+                        this.as = 0;
+                    }
                     break;
                 case 38:
                     this.a = 0;
                     break;
                 case 39:
-                    this.as = 0;
+                    if (this.isRotateRight) {
+                        this.isRotateRight = false;
+                        this.as = 0;
+                    }
                     break;
                 case 40:
                     this.a = 0;
