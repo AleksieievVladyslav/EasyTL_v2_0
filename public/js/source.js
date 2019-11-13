@@ -883,6 +883,9 @@ const gameProps = [
 		height: 850,
 		posX: 250,
 		posY: 110,
-		player: {width: '100px', height: '60px', image: 'car-3.png', element: 'car'}
+		player: {width: '100px', height: '60px', image: 'car-3.png', element: 'car'},
+		trees: [
+			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-1', posX: 90, posY: 290, hitbox: 35}
+		]
 	}
 ]
