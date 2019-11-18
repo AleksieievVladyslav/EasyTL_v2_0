@@ -885,7 +885,11 @@ const gameProps = [
 		posY: 110,
 		player: {width: '100px', height: '60px', image: 'car-3.png', element: 'car'},
 		trees: [
-			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-1', posX: 90, posY: 290, hitbox: 35}
+			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-1', posX: 90, posY: 290, hitbox: 35},
+			{width: '60px', height: '60px', image: 'tree.png', element: 'tree-2', posX: 50, posY: 40, hitbox: 25},
+			{width: '40px', height: '40px', image: 'tree.png', element: 'tree-3', posX: 30, posY: 300, hitbox: 35},
+			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-4', posX: 100, posY: 20, hitbox: 35},
+			{width: '40px', height: '40px', image: 'tree.png', element: 'tree-5', posX: 20, posY: 20, hitbox: 35}
 		]
 	}
 ]

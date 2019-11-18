@@ -1,4 +1,4 @@
-const DEBUG = true;
+const DEBUG = false;
 
 class Game {
     constructor(props) {
@@ -184,7 +184,6 @@ class Tree {
     }
     check(point) {
         const length = Math.sqrt(Math.pow(point[0] - (this.posX + parseInt(this.width) / 2), 2) + Math.pow(point[1] - (this.posY + parseInt(this.height) / 2), 2));
-        console.log(length);
         if (length < this.hitboxRadius) {
             this.c = '#0f0';
             this.render();
@@ -285,4 +284,3 @@ class Car {
         this.element.style.transform = `rotate(${- this.angle * 180 / Math.PI}deg)`
     }
 }
-const game = new Game(gameProps[0])

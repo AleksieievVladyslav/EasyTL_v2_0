@@ -64,6 +64,19 @@ $(document).ready(function(){
 		$('.menu-col').toggleClass('small');
 	})
 
+	$('.level').click(function() {
+		const id = parseInt($(this).children('h3').text().match(/(\d+)/)[0]) - 1;
+		if (id < gameProps.length) {
+			game = new Game(gameProps[id]);
+		} else {
+			alert("This level isn't avalible")
+			return;
+		}
+		$('.state').removeClass('actve');
+		$('.game').addClass('active');
+		$('main').addClass('ingame');
+	})
+	
 	$('.fbsharelink').click( function() 
 	{
 		FB.init({
@@ -93,3 +106,5 @@ $(document).ready(function(){
 	})
 	new Profile(userStatistic);
 });
+
+var game;
