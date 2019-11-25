@@ -77,3 +77,29 @@
     left: 0;
     background-size: cover;
 }
+#exit-arrow::before {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    height: 0;
+    width: 0;
+    display: block;
+    content: '';
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 20px solid #9C27B0;
+    margin-top: -11px;
+}
+#exit-arrow {
+    z-index: 100;
+}
+#exit-arrow::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    background: #9C27B0;
+    display: block;
+    content: '';
+}

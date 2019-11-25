@@ -886,10 +886,58 @@ const gameProps = [
 		player: {width: '100px', height: '60px', image: 'car-3.png', element: 'car'},
 		trees: [
 			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-1', posX: 90, posY: 290, hitbox: 35},
-			{width: '60px', height: '60px', image: 'tree.png', element: 'tree-2', posX: 50, posY: 40, hitbox: 25},
-			{width: '40px', height: '40px', image: 'tree.png', element: 'tree-3', posX: 30, posY: 300, hitbox: 35},
+			{width: '100px', height: '100px', image: 'tree.png', element: 'tree-2', posX: 0, posY: 5, hitbox: 45},
+			{width: '90px', height: '90px', image: 'tree.png', element: 'tree-3', posX: 10, posY: 290, hitbox: 40},
 			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-4', posX: 100, posY: 20, hitbox: 35},
-			{width: '40px', height: '40px', image: 'tree.png', element: 'tree-5', posX: 20, posY: 20, hitbox: 35}
+		],
+		exit: {width: '140px', height: '70px', posX: 1300, posY: 673},
+		person: [
+			{width: '41px', height: '50px', image: 'tree.png', id: 'person-1', posX: 210, posY: 300, speed: 0.1, angle: 0, 
+			script: function() {	
+				if (!this.stop) {
+					if (this.posX > 440 || this.posX < 210) {
+						this.temp = this.speed;
+						this.speed = 0;
+						this.stop = true;
+						this.angle = this.angle + Math.PI;
+						this.image = 'person-stop.png';
+						clearInterval(this.step)
+						setTimeout(() => {
+							this.speed = this.temp;
+							this.step = setInterval(this.stepAnimation, this.stepAnimationRate);
+							setTimeout(() => {
+								this.stop = false;
+							}, 100);
+						}, 1000)
+					}
+				}
+			}, stepAnimation: personStepAnimation, stepAnimationRate: 500}
 		]
 	}
 ]
+
+function personStepAnimation() {
+	// first type
+	// this.stepIndex = (this.stepIndex + 1) % 4;
+	// switch(this.stepIndex) {
+	//     case 0:
+	//         this.image = 'person-step-1.png';
+	//         break;
+	//     case 1:
+	//         this.image = 'person-stop.png';
+	//         break;
+	//     case 2:
+	//         this.image = 'person-step-2.png';
+	//         break;
+	//     case 3:
+	//         this.image = 'person-stop.png';
+	//         break;
+	// }
+
+	// second type
+	if (this.image == 'person-step-1.png') {
+		this.image = 'person-step-2.png';
+	} else {
+		this.image = 'person-step-1.png';
+	}
+}
