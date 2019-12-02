@@ -76,6 +76,7 @@
     top: 0;
     left: 0;
     background-size: cover;
+    overflow: hidden;
 }
 #exit-arrow::before {
     position: absolute;

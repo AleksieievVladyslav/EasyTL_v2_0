@@ -21,6 +21,8 @@ class Game {
             height: `${props.height}px`,
             width: `${props.width}px`,
         });
+        this.width = props.width;
+        this.height = props.height;
         $('#map').append(`<div id="loader"></div>`);
         
         this.posX = props.posX;
@@ -130,20 +132,73 @@ class Game {
         console.log(this.tree[0].getLength(hitbox[2]));
         console.log(this.tree[0].getLength(hitbox[3]));
     }
+    fault() {
+        $(document).off();
+        clearInterval(this.engine);
+        alert('Поражение');
+        this.speed = 0;
+    }
+    win() {
+        $(document).off();
+        clearInterval(this.engine);
+        alert('Победа');
+        this.speed = 0;
+    }
     checkColapse() {
-        const cornors = this.player.getHitboxCornors(this.center[0], this.center[1]);
+        let cornors = this.player.getHitboxCornors(this.center[0], this.center[1]);
+
+        // Check win
+        for (let i = 0; i < cornors.length; i++) {
+            const cornor = cornors[i];
+
+            if (this.exit.check(cornor)) {
+                if (DEBUG)
+                    console.log('win');
+                else 
+                    this.win();
+                return;
+            }
+        }
+
+
+        // Check borders
+        for (let i = 0; i < cornors.length; i++) {
+            const cornor = cornors[i];
+            
+            if (cornor[0] < 0 || cornor[1] < 0 || cornor[0] > this.width || cornor[1] > this.height) {
+                if (DEBUG)
+                    console.log('out')
+                else 
+                    this.fault();
+                return;
+            }
+        }
+
+        
+        // Check trees
         for (let i = 0; i < cornors.length; i++) {
             const cornor = cornors[i];
             for (let j = 0; j < this.tree.length; j++) {
                 if (this.tree[j].check(cornor)) {
                     if (DEBUG)
                         console.log('hit');
-                    else {
-                        $(document).off();
-                        clearInterval(this.engine);
-                        alert('Поражение');
-                        this.speed = 0;
-                    }
+                    else 
+                        this.fault();
+                    return;
+                }
+            }
+        }
+
+        // Check small objects
+        cornors.push(...this.player.getHitboxCenters(cornors));
+        for (let i = 0; i < cornors.length; i++) {
+            const cornor = cornors[i];
+            for (let j = 0; j < this.person.length; j++) {
+                if (this.person[j].checkCornor(cornor)){
+                    if (DEBUG) 
+                        console.log('hit');
+                    else 
+                        this.fault();
                     return;
                 }
             }
@@ -330,6 +385,13 @@ class Car {
             [posx + dx2, posy + dy2],  // right bottom
         ]
     }
+    getHitboxCenters(cornor) {
+        let result = [];
+        for (let i = 0; i < cornor.length; i++) {
+            result.push([(cornor[i][0] + cornor[(i + 1) % 4][0]) / 2, (cornor[i][1] + cornor[(i + 1) % 4][1]) / 2]);
+        }
+        return result;
+    }
 
     render() {
         this.element.style.position = 'absolute';
@@ -398,6 +460,10 @@ class Exit {
         if (Math.sqrt(dx * dx + dy * dy) < 250) $('#exit-arrow').hide()
         else $('#exit-arrow').show();
     }
+    check(point) {
+        return point[0] > this.posX && point[0] < this.posX + parseInt(this.width)
+            && point[1] > this.posY && point[1] < this.posY + parseInt(this.height)
+    }
 }
 class Person {
     constructor(props) {
@@ -413,6 +479,8 @@ class Person {
         this.height = props.height;
         this.angle = props.angle;
         this.speed = props.speed;
+        this.hitboxColor = '#f00'
+
         this.stop = false;
         $('#loader').append(`<div style='background-image: url("./img/game/person-step-1.png");'></div>`)
         $('#loader').append(`<div style='background-image: url("./img/game/person-step-2.png");'></div>`)
@@ -421,18 +489,37 @@ class Person {
         $('#map').append(`<div id="${this.id}"></div>`)
         this.id = `#${this.id}`
         $(this.id).css({
-            position: 'absolute',
             width: this.width,
             height: this.height,
+            position: 'absolute',
             backgroundSize: 'contain',
             transition: 'transform 0.5s',
-            backgroundRepeat: 'no-repeat'
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: '50% 50%'
         })
-        this.image = 'person-stop.png';
+        this.image = props.image;
         this.stepIndex = 0;
         this.step = setInterval(this.stepAnimation, this.stepAnimationRate);
 
         this.render()
+        $(this.id).append(`<div id="${props.id}-hitbox"></div>`);
+        this.renderHitbox(DEBUG);
+    }
+    renderHitbox(deb) {
+        $(this.id + "-hitbox").css({
+            width: `${this.width}`,
+            height: `${this.height}`,
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            transition: 'inherit'
+        })
+        if (deb) {
+            $(this.id + '-hitbox').css({
+                background: this.hitboxColor
+            })
+        }
     }
     render() {
         this.move();
@@ -442,7 +529,7 @@ class Person {
             left: `${this.posX}px`,
             transform: `rotate(${this.angle * 180 / Math.PI}deg)`,
             backgroundImage: `url('./img/game/${this.image}'`,
-        })
+        });
     }
     move() {
         let dx = this.speed * Math.cos(- this.angle);
@@ -451,7 +538,42 @@ class Person {
         this.posX += dx;
         this.posY += dy;
     }
+    checkCornor(cornor) {
+        const x1 = this.posX;
+        const y1 = this.posY;
+        const x2 = this.posX + parseInt(this.width);
+        const y2 = this.posY + parseInt(this.height);
+
+        if (x1 <= cornor[0] && cornor[0] <= x2 && y1 <= cornor[1] && cornor[1] <= y2) {
+            this.hitboxColor = '#0f0';
+            this.renderHitbox(DEBUG);
+            return true;
+        }
+        else {
+            this.hitboxColor = '#f00';
+            this.renderHitbox(DEBUG);
+            return false;
+        }
+    }
+    checkLines() {
+        const lines = this.getHitboxLines();
+        
+        for (let i = 0; i < lines.length; i++) {
+            $('#map').append(`<div style="position: absolute; background: #00f; width: 10px; height: 10px; top: ${lines[i][0][1]}px; left: ${lines[i][0][0]}px"></div>`)
+            $('#map').append(`<div style="position: absolute; z-index: 1; background: #f00; width: 5px; height: 10px; top: ${lines[i][1][1]}px; left: ${lines[i][1][0]}px"></div>`)
+        }
+    }
+    getHitboxLines() {
+        const w = parseInt(this.width);
+        const h = parseInt(this.height);
+        return [
+            [[this.posX, this.posY], [this.posX + w, this.posY]],
+            [[this.posX + w, this.posY], [this.posX + w, this.posY + h]],
+            [[this.posX + w, this.posY + h], [this.posX, this.posY + h]],
+            [[this.posX, this.posY + h], [this.posX, this.posY]],
+        ]
+    }
 }
 
-
 DEBUG = false;
+// game = new Game(gameProps[0])
