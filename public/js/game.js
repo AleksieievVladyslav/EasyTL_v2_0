@@ -50,6 +50,11 @@ class Game {
             this.person[i] = new Person(props.person[i]);
         }
 
+        this.line = [];
+        for (let i = 0; i < props.line.length; i++) {
+            this.line[i] = new Line(props.line[i]);
+        }
+
         this.engine = setInterval(() => {
             this.move();
             this.render();
@@ -65,7 +70,7 @@ class Game {
         $(document).keydown((e) => {
             switch(e.keyCode) {
                 case 37:
-                    this.as = 0.005;
+                    this.as = 0.008;
                     break;
                 // up
                 case 38:
@@ -73,7 +78,7 @@ class Game {
                     break;
                 // right
                 case 39:
-                    this.as = -0.005;
+                    this.as = -0.008;
                     break;
                 // down
                 case 40:
@@ -110,7 +115,9 @@ class Game {
         for (let i = 0; i < this.tree.length; i++) {
             this.tree[i].renderHitbox(DEBUG);
         }
-
+        for (let i = 0; i < this.person.length; i++) {
+            this.person[i].renderHitbox(DEBUG);
+        }
     }
 
     testCornors() {
@@ -519,6 +526,10 @@ class Person {
             $(this.id + '-hitbox').css({
                 background: this.hitboxColor
             })
+        } else {
+            $(this.id + '-hitbox').css({
+                background: 'none'
+            })
         }
     }
     render() {
@@ -574,6 +585,41 @@ class Person {
         ]
     }
 }
+class Line {
+    constructor(props) {
+        this.posX = props.posX;
+        this.posY = props.posY;
+        this.width = props.width;
 
-DEBUG = false;
-// game = new Game(gameProps[0])
+        this.angle = props.angle;
+        this.id = props.id;
+
+        this.renderHitbox(DEBUG);
+    }
+    renderHitbox(deb) {
+        $('#map').append(`<div id="${this.id}"></div>`);
+        $('#' + this.id).css({
+            position: 'absolute',
+            top: this.posY + 'px',
+            left: this.posX + 'px',
+            transformOrigin: '0% 50%',
+            transform: `rotate(${this.angle}deg)`,
+            height: '8px',
+            width: this.width,
+            marginTop: '-4px'
+        });
+
+        if (deb) {
+            $('#' + this.id).css({
+                background: '#00f'
+            })
+        } else {
+            $('#' + this.id).css({
+                background: 'none'
+            })
+        }
+    }
+}
+
+DEBUG = true;
+game = new Game(gameProps[0])

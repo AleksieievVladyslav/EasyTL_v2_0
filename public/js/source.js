@@ -883,7 +883,7 @@ const gameProps = [
 		height: 850,
 		posX: 250,
 		posY: 110,
-		player: {width: '100px', height: '60px', image: 'car-3.png', element: 'car'},
+		player: {width: '100px', height: '55px', image: 'car-3.png', element: 'car'},
 		trees: [
 			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-1', posX: 90, posY: 290, hitbox: 35},
 			{width: '100px', height: '100px', image: 'tree.png', element: 'tree-2', posX: 0, posY: 5, hitbox: 45},
@@ -917,13 +917,16 @@ const gameProps = [
 				stepAnimation: personStepAnimation, stepAnimationRate: 500
 			},
 			{
-				width: '100px', height: '60px', image: 'car-1.png', id: 'car-1', posX: 340, posY: 400, speed: 0, angle: -Math.PI / 2,
+				width: '100px', height: '55px', image: 'car-1.png', id: 'car-1', posX: 340, posY: 400, speed: 0, angle: -Math.PI / 2,
 				script: function() {
 					setTimeout(() => {
 						this.speed = -0.3;
 					}, 10000)
 				},
 			}
+		],
+		line: [
+			{width: '160px', posX: 0, posY: 193, id: 'line-1', angle: 0}
 		]
 	}
 ]
