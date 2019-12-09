@@ -13,9 +13,9 @@ class Game {
             <div id="field">\
                 <div id="map"></div>\
                 <div id="car"></div>\
+                <div id="game-message"></div>\
             </div>'
         );
-        
         $('#map').css({
             backgroundImage: `url(img/game/${props.image}`,
             height: `${props.height}px`,
@@ -24,7 +24,8 @@ class Game {
         this.width = props.width;
         this.height = props.height;
         $('#map').append(`<div id="loader"></div>`);
-        
+        $('#loader').append(`<div style='background-image: url("./img/game/win.png");'></div>`)
+        $('#loader').append(`<div style='background-image: url("./img/game/lose.png");'></div>`)
         this.posX = props.posX;
         this.posY = props.posY;
 
@@ -42,7 +43,10 @@ class Game {
         const trees = props.trees;
         this.tree = [];
         for (let i = 0; i < trees.length; i++) {
-            this.tree[i] = new Tree(trees[i]);
+            if (!trees[i].ignore)
+                this.tree.push(new Tree(trees[i]));
+            else 
+                new Tree(trees[i]);
         }
 
         this.person = [];
@@ -139,10 +143,10 @@ class Game {
         console.log(this.tree[0].getLength(hitbox[2]));
         console.log(this.tree[0].getLength(hitbox[3]));
     }
-    fault() {
+    fault(message) {
         $(document).off();
         clearInterval(this.engine);
-        alert('Поражение');
+        new Message({message: message, status: 'Поражение', statusBool: false});
         this.speed = 0;
     }
     win() {
@@ -176,7 +180,7 @@ class Game {
                 if (DEBUG)
                     console.log('out')
                 else 
-                    this.fault();
+                    this.fault('Не выезжайте за пределы карты!');
                 return;
             }
         }
@@ -190,7 +194,7 @@ class Game {
                     if (DEBUG)
                         console.log('hit');
                     else 
-                        this.fault();
+                        this.fault(this.tree[j].message);
                     return;
                 }
             }
@@ -205,7 +209,7 @@ class Game {
                     if (DEBUG) 
                         console.log('hit');
                     else 
-                        this.fault();
+                        this.fault(this.person[j].message);
                     return;
                 }
             }
@@ -271,13 +275,21 @@ class Game {
             top: `${this.posY}px`,
         })
     }
+    
+    clear() {
+        $('.game').text('');
+    }
+    restart() {
+        $('.game').text('');
+        game = new Game(gameProps[0]);
+    }
 }
 
 class Tree {
     constructor(treeSetting) {
         this.width = treeSetting.width;
         this.height = treeSetting.height;
-        this.image = treeSetting.image;
+        this.image = treeSetting.image ? `url('img/game/${treeSetting.image}')` : 'none';
         this.posX = treeSetting.posX;
         this.posY = treeSetting.posY;
 
@@ -289,6 +301,7 @@ class Tree {
 
         this.hitboxRadius = treeSetting.hitbox;
 
+        this.message = treeSetting.message ? treeSetting.message : '';
 
         
         this.hitboxId = `${this.id}-hitbox`;
@@ -334,7 +347,7 @@ class Tree {
         this.element.style.left = this.posX + 'px';
         this.element.style.width = this.width;
         this.element.style.height = this.height;
-        this.element.style.backgroundImage = `url(img/game/${this.image})`;
+        this.element.style.backgroundImage = this.image;
         this.element.style.backgroundSize = 'contain';
         this.element.style.backgroundRepeat = 'no-repeat';
         this.element.style.backgroundPosition = '50% 50%';
@@ -346,7 +359,7 @@ class Car {
 
         this.width = width;
         this.height = height;
-        this.image = image;
+        this.image = image ? 'img/game/' + image : 'none';
         this.element = document.getElementById(element);
 
         this.posX = posX;
@@ -408,7 +421,7 @@ class Car {
         this.element.style.height = this.height;
         this.element.style.marginLeft = - parseInt(this.width) / 2 + 'px';
         this.element.style.marginTop =  - parseInt(this.height) / 2 + 'px';
-        this.element.style.backgroundImage = `url(img/game/${this.image})`;
+        this.element.style.backgroundImage = `url(${this.image})`;
         this.element.style.backgroundSize = 'contain';
         this.element.style.backgroundRepeat = 'no-repeat';
         this.element.style.backgroundPosition = '50% 50%';
@@ -487,6 +500,7 @@ class Person {
         this.angle = props.angle;
         this.speed = props.speed;
         this.hitboxColor = '#f00'
+        this.message = props.message ? props.message : '';
 
         this.stop = false;
         $('#loader').append(`<div style='background-image: url("./img/game/person-step-1.png");'></div>`)
@@ -504,7 +518,8 @@ class Person {
             backgroundRepeat: 'no-repeat',
             backgroundPosition: '50% 50%'
         })
-        this.image = props.image;
+        this.image = props.image ? `url('img/game/${props.image}')` : 'none';
+
         this.stepIndex = 0;
         this.step = setInterval(this.stepAnimation, this.stepAnimationRate);
 
@@ -539,7 +554,7 @@ class Person {
             top: `${this.posY}px`,
             left: `${this.posX}px`,
             transform: `rotate(${this.angle * 180 / Math.PI}deg)`,
-            backgroundImage: `url('./img/game/${this.image}'`,
+            backgroundImage: `${this.image}`,
         });
     }
     move() {
@@ -620,6 +635,44 @@ class Line {
         }
     }
 }
+class Message {
+    constructor(props) {
+        this.message = props.message;
+        this.mesImage = props.statusBool ? 'win' : 'lose';
+        this.status = props.status;
+        let options = '<div id="game-restart">начать заново</div><br><div id="game-menu">выйти в меню</div>';
+        tryCount++;
+        if (tryCount > 5) {
+            tryCount = 0;
+            this.message += "<br>Повторите теорию и возвращайтесь"
+            options = '<br><div id="game-menu">выйти в меню</div>';
+        }
 
+
+        document.getElementById('game-message').innerHTML = 
+        `<div>
+            <div class="mes-image ${this.mesImage}"></div>
+            <div class="mes-content"><h2>${this.status}</h2>${this.message}</div>
+            <div class="mes-option">${options}</div>
+        </div>`
+
+        $('#field').addClass(this.mesImage);
+
+        $('#game-menu').click(this.exit);
+        $('#game-restart').click(this.restart);
+
+    }
+    restart() {
+        game.restart();
+        $('#game-message').text('');
+    }
+    exit() {
+        game.clear();
+        $('main').removeClass('ingame');
+        $('.state').removeClass('active');
+        $('.main-menu').addClass('active');
+    }
+}
+let tryCount = 0;
 DEBUG = true;
 game = new Game(gameProps[0])

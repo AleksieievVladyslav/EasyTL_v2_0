@@ -72,6 +72,9 @@
     position: relative;
     overflow: hidden;
 }
+#field.lose {
+    box-shadow: inset 0px 0px 200px 0px rgba(255,0,0,1);
+}
 #map {
     position: absolute;
     top: 0;
@@ -104,4 +107,60 @@
     background: #9C27B0;
     display: block;
     content: '';
+}
+#game-message {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+    align-items: center;
+}
+#game-message > div {
+    background: #fff;
+    padding: 20px 40px;
+    user-select: none;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 0px 100px 0px rgba(255,0,0,1);
+}
+.mes-image {
+    height: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.mes-image.lose {
+    background-image: url('../img/game/lose.png');
+}
+.mes-image.win {
+    background-image: url('../img/game/win.png');
+}
+.mes-x {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+.mes-option > div {
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 0.8em;
+    margin-top: 10px;
+    color: #b2b2b2;
+    border: 1px solid #b2b2b2;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 170px;
+}
+
+.mes-option > div:hover {
+    color: #212121;
+    border-color: #212121;
 }

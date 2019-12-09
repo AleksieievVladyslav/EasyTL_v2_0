@@ -876,6 +876,7 @@ var userStatistic = {
 		time: 0
 	}
 }
+const message_1 = 'Не заезжай на обочину!';
 const gameProps = [
 	{
 		image: 'map1.jpg',
@@ -885,15 +886,17 @@ const gameProps = [
 		posY: 110,
 		player: {width: '100px', height: '55px', image: 'car-3.png', element: 'car'},
 		trees: [
-			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-1', posX: 90, posY: 290, hitbox: 35},
-			{width: '100px', height: '100px', image: 'tree.png', element: 'tree-2', posX: 0, posY: 5, hitbox: 45},
-			{width: '90px', height: '90px', image: 'tree.png', element: 'tree-3', posX: 10, posY: 290, hitbox: 40},
-			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-4', posX: 100, posY: 20, hitbox: 35},
+			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-1', posX: 90, posY: 290, hitbox: 35, ignore: true},
+			{width: '100px', height: '100px', image: 'tree.png', element: 'tree-2', posX: 0, posY: 5, hitbox: 45, ignore: true},
+			{width: '90px', height: '90px', image: 'tree.png', element: 'tree-3', posX: 10, posY: 290, hitbox: 40, ignore: true},
+			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-4', posX: 100, posY: 20, hitbox: 35, ignore: true},
+			{width: '40px', height: '40px', element: 'field-r1', posX: 217, posY: 67, hitbox: 15, message: message_1},
+			{width: '40px', height: '40px', element: 'field-r2', posX: 217, posY: 280, hitbox: 15, message: message_1},
 		],
 		exit: {width: '140px', height: '70px', posX: 1300, posY: 673},
 		person: [
 			{
-				width: '41px', height: '50px', image: 'person-stop.png', id: 'person-1', posX: 210, posY: 300, speed: 0.1, angle: 0, 
+				width: '41px', height: '50px', image: 'person-stop.png', id: 'person-1', posX: 210, posY: 300, speed: 0.11, angle: 0, 
 				script: function() {	
 					if (!this.stop) {
 						if (this.posX > 440 || this.posX < 210) {
@@ -902,7 +905,7 @@ const gameProps = [
 							this.stop = true;
 							this.angle = this.angle + Math.PI;
 							$(this.id + '-hitbox').css({transform: `translate(-50%, -50%) rotate(${-this.angle * 180 / Math.PI}deg)`})
-							this.image = 'person-stop.png';
+							this.image = "url('img/game/person-stop.png')";
 							clearInterval(this.step)
 							setTimeout(() => {
 								this.speed = this.temp;
@@ -923,14 +926,19 @@ const gameProps = [
 						this.speed = -0.3;
 					}, 10000)
 				},
-			}
+			},
+			{width: '230px', height: '103px', id: 'field-1', posX: 0, posY: 0, speed: 0, angle: 0, message: message_1},
+			{width: '22px', height: '85px', id: 'field-2', posX: 230, posY: 0, speed: 0, angle: 0, message: message_1},
+			{width: '230px', height: '600px', id: 'field-3', posX: 0, posY: 283, speed: 0, angle: 0, message: message_1},
+			{width: '22px', height: '600px', id: 'field-4', posX: 230, posY: 300, speed: 0, angle: 0, message: message_1},
+			{width: '537px', height: '103px', id: 'field-5', posX: 450, posY: 0, speed: 0, angle: 0, message: message_1},
+			{width: '22px', height: '85px', id: 'field-6', posX: 435, posY: 0, speed: 0, angle: 0, message: message_1},
+			{width: '22px', height: '85px', id: 'field-7', posX: 980, posY: 0, speed: 0, angle: 0, message: message_1},
 		],
 		line: [
-			{width: '160px', posX: 0, posY: 193, id: 'line-1', angle: 0}
 		]
 	}
 ]
-
 function personStepAnimation() {
 	// first type
 	// this.stepIndex = (this.stepIndex + 1) % 4;
@@ -949,10 +957,10 @@ function personStepAnimation() {
 	//         break;
 	// }
 
-	// second type
-	if (this.image == 'person-step-1.png') {
-		this.image = 'person-step-2.png';
+	// second type`url('img/game/${props.image}')`
+	if (this.image == "url('img/game/person-step-1.png')") {
+		this.image = "url('img/game/person-step-2.png')";
 	} else {
-		this.image = 'person-step-1.png';
+		this.image = "url('img/game/person-step-1.png')";
 	}
 }
