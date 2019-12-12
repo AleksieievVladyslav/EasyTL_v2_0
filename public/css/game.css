@@ -65,8 +65,6 @@
 }
 #field {
     border: 2px solid #808080;
-    background: #b2b2b2;
-    /* background-image: url('../img/game-texture.png'); */
     width: 700px;
     height: 700px;
     position: relative;
@@ -80,7 +78,31 @@
     top: 0;
     left: 0;
     background-size: cover;
-    overflow: hidden;
+}
+#map::before {
+    z-index: -2;
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    content: '';
+    display: block;
+    background: #b2b2b2;
+    background-image: url('../img/game-texture.png');
+    width: 300%;
+    height: 300%;
+}
+#map::after {
+    z-index: -1;
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    content: '';
+    display: block;
+    background: #b2b2b2;
+    width: 300%;
+    height: 300%;
+    opacity: 0.6;
+
 }
 #exit-arrow::before {
     position: absolute;
@@ -163,4 +185,37 @@
 .mes-option > div:hover {
     color: #212121;
     border-color: #212121;
+}
+#controls-back {
+    margin-top: 20px;
+}
+#controls, #controls-back {
+    display: inline-block;
+    padding: 10px 30px;
+    border: 1px solid #b2b2b2;
+    color: #b2b2b2;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+#controls:hover, #controls-back:hover {
+    color: #212121;
+    border-color: #212121;
+}
+.controls {
+    text-align: center;
+    margin-top: 20px;
+}
+.state.controls {
+    background: #fff;
+    margin-top: 0;
+    text-align: center;
+}
+.controls p {
+    font-size: 1.1em;
+    font-style: italic;
+    text-align: justify;
+}
+.controls-info p {
+    text-align: center;
+    padding-top: 5px;
 }

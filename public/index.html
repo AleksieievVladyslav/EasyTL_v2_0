@@ -19,8 +19,8 @@
 	<link rel="shortcut icon" href="img/ic_launcher.png" type="image/png">
 </head>
 <body>
-	<main class="ingame">
-		<!-- <div class="load active">
+	<main>
+		<div class="load">
 			<div class="logo">
 				<h1 class="light">Make it easier</h1><h1 class="light">with</h1>
 				<h1><i class="fas fa-american-sign-language-interpreting"></i>Easy TL</h1>
@@ -28,7 +28,7 @@
 			<div id="fountainG">
 				<div id="fountainG_1" class="fountainG"></div><div id="fountainG_2" class="fountainG"></div><div id="fountainG_3" class="fountainG"></div><div id="fountainG_4" class="fountainG"></div><div id="fountainG_5" class="fountainG"></div><div id="fountainG_6" class="fountainG"></div><div id="fountainG_7" class="fountainG"></div><div id="fountainG_8" class="fountainG"></div>
 			</div>
-		</div> -->
+		</div>
 		<div class="menu-col">
 			<div class="logo">
 				<i class="fas fa-american-sign-language-interpreting"></i>Easy TL<div class="toggle"><svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></path></svg></div>
@@ -59,12 +59,30 @@
 						</div>
 						<div class="col"></div>
 					</div>
+					<div class="controls">
+						<div id="controls">Правила игры</div>
+					</div>
 				</div>
 			</div>
-			<div class="state game active">
+			<div class="state controls">
+				<div class="wrapper">
+					<div class="top-header">Цель игры</div>
+					<p>Цель игры очень проста! Необходимо проехать от места появления до конца уровня и там остановиться. Фиолетовая стрелка укажет тебе направление. И старайся не нарушать! Ведь мы же тут ПДД учим)</p>
+					<div class="top-header">Управление</div>
+					<div class="controls-info">
+						<p><b>Вверх</b> - газ</p>
+						<p><b>Вниз</b> - тормоз</p>
+						<p><b>Влево</b> - руль влево</p>
+						<p><b>Вправо</b> - руль Вправо</p>
+						<p><b>Пробел</b> - ручной тормоз</p>
+					</div>
+					<div class="controls-back"><div id="controls-back">Назад к выбору уровня</div></div>
+				</div>
+			</div>
+			<div class="state game">
 				
 			</div>
-			<div class="state main-menu ">
+			<div class="state main-menu active">
 				<div class="profile">
 					<div class="profile-panel">
 						<div class = "profile state load-reg">

@@ -877,6 +877,7 @@ var userStatistic = {
 	}
 }
 const message_1 = 'Не заезжай на обочину!';
+const message_2 = 'Не врезайся ни в кого!';
 const gameProps = [
 	{
 		image: 'map1.jpg',
@@ -886,12 +887,10 @@ const gameProps = [
 		posY: 110,
 		player: {width: '100px', height: '55px', image: 'car-3.png', element: 'car'},
 		trees: [
-			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-1', posX: 90, posY: 290, hitbox: 35, ignore: true},
-			{width: '100px', height: '100px', image: 'tree.png', element: 'tree-2', posX: 0, posY: 5, hitbox: 45, ignore: true},
-			{width: '90px', height: '90px', image: 'tree.png', element: 'tree-3', posX: 10, posY: 290, hitbox: 40, ignore: true},
-			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-4', posX: 100, posY: 20, hitbox: 35, ignore: true},
-			{width: '40px', height: '40px', element: 'field-r1', posX: 217, posY: 67, hitbox: 15, message: message_1},
-			{width: '40px', height: '40px', element: 'field-r2', posX: 217, posY: 280, hitbox: 15, message: message_1},
+			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-1', posX: 90, posY: 290, hitbox: 35, ignore: true, message: message_2},
+			{width: '100px', height: '100px', image: 'tree.png', element: 'tree-2', posX: 0, posY: 5, hitbox: 45, ignore: true, message: message_2},
+			{width: '90px', height: '90px', image: 'tree.png', element: 'tree-3', posX: 10, posY: 290, hitbox: 40, ignore: true, message: message_2},
+			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-4', posX: 100, posY: 20, hitbox: 35, ignore: true, message: message_2},
 		],
 		exit: {width: '140px', height: '70px', posX: 1300, posY: 673},
 		person: [
@@ -917,7 +916,7 @@ const gameProps = [
 						}
 					}
 				}, 
-				stepAnimation: personStepAnimation, stepAnimationRate: 500
+				stepAnimation: personStepAnimation, stepAnimationRate: 500, message: message_2
 			},
 			{
 				width: '100px', height: '55px', image: 'car-1.png', id: 'car-1', posX: 340, posY: 400, speed: 0, angle: -Math.PI / 2,
@@ -925,15 +924,24 @@ const gameProps = [
 					setTimeout(() => {
 						this.speed = -0.3;
 					}, 10000)
-				},
+				}, message: message_2
 			},
-			{width: '230px', height: '103px', id: 'field-1', posX: 0, posY: 0, speed: 0, angle: 0, message: message_1},
-			{width: '22px', height: '85px', id: 'field-2', posX: 230, posY: 0, speed: 0, angle: 0, message: message_1},
-			{width: '230px', height: '600px', id: 'field-3', posX: 0, posY: 283, speed: 0, angle: 0, message: message_1},
-			{width: '22px', height: '600px', id: 'field-4', posX: 230, posY: 300, speed: 0, angle: 0, message: message_1},
-			{width: '537px', height: '103px', id: 'field-5', posX: 450, posY: 0, speed: 0, angle: 0, message: message_1},
-			{width: '22px', height: '85px', id: 'field-6', posX: 435, posY: 0, speed: 0, angle: 0, message: message_1},
-			{width: '22px', height: '85px', id: 'field-7', posX: 980, posY: 0, speed: 0, angle: 0, message: message_1},
+			{
+				width: '100px', height: '55px', image: 'car-4.png', id: 'car-2', posX: 600, posY: 120, speed: 0, angle: -Math.PI,
+				script: function() {
+					setTimeout(() => {
+						this.speed = 0.3;
+					}, 500)
+				}, message: message_2
+			},
+			{width: '240px', height: '93px', id: 'field-1', posX: 0, posY: 0, speed: 0, angle: 0, message: message_1},
+			{width: '240px', height: '600px', id: 'field-2', posX: 0, posY: 293, speed: 0, angle: 0, message: message_1},
+			{width: '550px', height: '93px', id: 'field-3', posX: 445, posY: 0, speed: 0, angle: 0, message: message_1},
+			{width: '550px', height: '275px', id: 'field-4', posX: 445, posY: 293, speed: 0, angle: 0, message: message_1},
+			{width: '550px', height: '200px', id: 'field-5', posX: 445, posY: 760, speed: 0, angle: 0, message: message_1},
+			{width: '550px', height: '93px', id: 'field-6', posX: 1190, posY: 0, speed: 0, angle: 0, message: message_1},
+			{width: '550px', height: '275px', id: 'field-7', posX: 1190, posY: 293, speed: 0, angle: 0, message: message_1},
+			{width: '550px', height: '200px', id: 'field-8', posX: 1190, posY: 760, speed: 0, angle: 0, message: message_1},
 		],
 		line: [
 		]

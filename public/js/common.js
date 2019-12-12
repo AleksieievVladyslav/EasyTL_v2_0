@@ -95,6 +95,14 @@ $(document).ready(function(){
 	 //    'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
 	    return false;
 	});
+	$('#controls').click(function() {
+		$('.state').removeClass('active');
+		$('.state.controls').addClass('active');
+	})
+	$('#controls-back').click(function() {
+		$('.state').removeClass('active');
+		$('.level-select').addClass('active');
+	})
 	$('.to-quick-test').click(function() {
 		$('.theory-topic').removeClass('active');
 		new Quick(true, CURRENT_TOPIC);

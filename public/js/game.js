@@ -9,6 +9,7 @@ Object.defineProperty(window, 'DEBUG', {
 })
 class Game {
     constructor(props) {
+        tryCount = 0;
         $('.game').append('\
             <div id="field">\
                 <div id="map"></div>\
@@ -146,32 +147,26 @@ class Game {
     fault(message) {
         $(document).off();
         clearInterval(this.engine);
-        new Message({message: message, status: 'Поражение', statusBool: false});
         this.speed = 0;
+        new Message({message: message, status: 'Поражение', statusBool: false});
     }
-    win() {
+    win(message) {
         $(document).off();
         clearInterval(this.engine);
-        alert('Победа');
         this.speed = 0;
+        new Message({message: message, status: 'Победа!', statusBool: true});
     }
     checkColapse() {
-        let cornors = this.player.getHitboxCornors(this.center[0], this.center[1]);
-
-        // Check win
-        for (let i = 0; i < cornors.length; i++) {
-            const cornor = cornors[i];
-
-            if (this.exit.check(cornor)) {
-                if (DEBUG)
-                    console.log('win');
-                else 
-                    this.win();
-                return;
-            }
+        // Check win        
+        if (this.exit.check(this.center) && Math.abs(this.speed) < 0.05) {
+            if (DEBUG)
+                console.log('win');
+            else 
+                this.win("Вы прошли этот уровень!");
+            return;
         }
 
-
+        let cornors = this.player.getHitboxCornors(this.center[0], this.center[1]);
         // Check borders
         for (let i = 0; i < cornors.length; i++) {
             const cornor = cornors[i];
@@ -201,7 +196,7 @@ class Game {
         }
 
         // Check small objects
-        cornors.push(...this.player.getHitboxCenters(cornors));
+        // cornors.push(...this.player.getHitboxCenters(cornors));
         for (let i = 0; i < cornors.length; i++) {
             const cornor = cornors[i];
             for (let j = 0; j < this.person.length; j++) {
@@ -674,5 +669,5 @@ class Message {
     }
 }
 let tryCount = 0;
-DEBUG = true;
-game = new Game(gameProps[0])
+DEBUG = false;
+// game = new Game(gameProps[0])
