@@ -157,6 +157,7 @@ class Game {
         new Message({message: message, status: 'Победа!', statusBool: true});
     }
     checkColapse() {
+        console.log(this.person);
         // Check win        
         if (this.exit.check(this.center) && Math.abs(this.speed) < 0.05) {
             if (DEBUG)
