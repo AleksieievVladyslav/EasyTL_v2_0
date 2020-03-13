@@ -891,6 +891,8 @@ const gameProps = [
 			{width: '100px', height: '100px', image: 'tree.png', element: 'tree-2', posX: 0, posY: 5, hitbox: 45, ignore: true, message: message_2},
 			{width: '90px', height: '90px', image: 'tree.png', element: 'tree-3', posX: 10, posY: 290, hitbox: 40, ignore: true, message: message_2},
 			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-4', posX: 100, posY: 20, hitbox: 35, ignore: true, message: message_2},
+			{width: '80px', height: '80px', image: 'tree.png', element: 'tree-5', posX: 150, posY: 380, hitbox: 35, ignore: true, message: message_2},
+			{width: '100px', height: '100px', image: 'tree.png', element: 'tree-6', posX: 100, posY: 420, hitbox: 45, ignore: true, message: message_2},
 		],
 		exit: {width: '140px', height: '70px', posX: 1300, posY: 673},
 		person: [

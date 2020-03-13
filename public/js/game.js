@@ -183,18 +183,18 @@ class Game {
 
         
         // Check trees
-        for (let i = 0; i < cornors.length; i++) {
-            const cornor = cornors[i];
-            for (let j = 0; j < this.tree.length; j++) {
-                if (this.tree[j].check(cornor)) {
-                    if (DEBUG)
-                        console.log('hit');
-                    else 
-                        this.fault(this.tree[j].message);
-                    return;
-                }
-            }
-        }
+        // for (let i = 0; i < cornors.length; i++) {
+        //     const cornor = cornors[i];
+        //     for (let j = 0; j < this.tree.length; j++) {
+        //         if (this.tree[j].check(cornor)) {
+        //             if (DEBUG)
+        //                 console.log('hit');
+        //             else 
+        //                 this.fault(this.tree[j].message);
+        //             return;
+        //         }
+        //     }
+        // }
 
         // Check small objects
         // cornors.push(...this.player.getHitboxCenters(cornors));
